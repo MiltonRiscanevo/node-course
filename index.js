@@ -7,40 +7,57 @@
 
 // para poder importar el modulo en node.js se usa la sintax
 
-const fs= require ("fs")
+// const fs= require ("fs")
 
-//leer un archivo con fs (ASINCRONO)
+// //leer un archivo con fs (ASINCRONO)
 
-fs.readFile("saludo.txt", {encoding: "utf8"}, (err, data) =>{
-    if(!err){
-        console.log(data)
-    }
-})
+// fs.readFile("saludo.txt", {encoding: "utf8"}, (err, data) =>{
+//     if(!err){
+//         console.log(data)
+//     }
+// })
 
-const data =fs.readFileSync("saludo.txt",{encoding:"utf8"}); //(SINCRONO)
-    console.log(data);
-
-
-// se realiza escritos en los archivos usados    
-fs.writeFile("saludo.txt", "Holla Mundito pequenito",(err) => {
-    if(err){
-        console.log(err);
-    }else{
-        console.log("ok escrito");
-    }
-})
+// const data =fs.readFileSync("saludo.txt",{encoding:"utf8"}); //(SINCRONO)
+//     console.log(data);
 
 
-//adiciona al final de un dato en el archivo a usar
-fs.appendFile("saludo.txt"," add tex to final file",(err)=>{
-    if(err){
-        console.log(err);
-    }else{
-        console.log("ok escrito");
-    }
-})
+// // se realiza escritos en los archivos usados    
+// fs.writeFile("saludo.txt", "Holla Mundito pequenito",(err) => {
+//     if(err){
+//         console.log(err);
+//     }else{
+//         console.log("ok escrito");
+//     }
+// })
+
+
+// //adiciona al final de un dato en el archivo a usar
+// fs.appendFile("saludo.txt"," add tex to final file",(err)=>{
+//     if(err){
+//         console.log(err);
+//     }else{
+//         console.log("ok escrito");
+//     }
+// })
 
 //cada uno tiene sus pares sincronos p.e
 //writeFileSync
 //appendFileSync
 //readFileSync
+
+const fs = require("fs/promises")// podemos usar la sintax require("fs").promises
+
+fs.readFile("saludo.txt",{encoding:"utf8"})
+.then(data =>console.log(data))
+.catch (error=> console.log(error))
+
+const readFile= async()=>{
+    try {
+        const data = await fs.readFile("saludo.txt",{encoding:"utf8"})
+        console.log(data);
+    } catch (error) {
+        
+        console.log(error);
+    }
+}
+
